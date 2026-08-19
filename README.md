@@ -41,3 +41,6 @@ style.css
 script.js
 .gitignore
 README.md
+## Project Status
+
+The application is containerized using Docker and maintained using GitHub version control.
