@@ -42,3 +42,21 @@ jobs:
           test -f style.css
           test -f script.js
           echo "All tests passed successfully"
+
+  docker:
+    name: Docker Image Build
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t laboratory-diagnostic-platform:latest .
+
+      - name: Verify Docker image
+        run: |
+          docker images
+          echo "Docker image built successfully"
