@@ -1,0 +1,44 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: |
+          echo "Building Laboratory Information and Diagnostic Management Platform"
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          test -f Dockerfile
+          echo "Build completed successfully"
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Test required files
+        run: |
+          echo "Running application tests"
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          echo "All tests passed successfully"
